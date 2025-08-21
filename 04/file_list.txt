@@ -1,0 +1,18 @@
+total 80
+-rwxrwxrwx 1 san san    69 Aug 16 11:54 Makefile
+-rwxrwxrwx 1 san san    68 Aug 16 12:02 a.txt
+-rwxrwxrwx 1 san san     4 Aug 18 11:30 b.txt
+-rwxrwxrwx 1 san san     4 Aug 18 11:45 c.txt
+-rwxrwxrwx 1 san san     0 Aug 18 11:49 errors.txt
+-rwxrwxrwx 1 san san     0 Aug 18 11:55 file_list.txt
+-rwxrwxrwx 1 san san   961 Aug 18 11:05 main.c
+-rwxrwxrwx 1 san san 16032 Aug 18 11:57 max
+-rwxrwxrwx 1 san san   328 Aug 16 11:49 max.c
+-rwxrwxrwx 1 san san  3820 Aug 18 11:57 myshell.c
+-rwxrwxrwx 1 san san   376 Aug 18 11:44 myshell.h
+-rwxrwxrwx 1 san san     0 Aug 18 11:50 not_found_errors.txt
+-rwxrwxrwx 1 san san     0 Aug 18 11:50 not_found_errors.txt$
+-rwxrwxrwx 1 san san 16032 Aug 18 11:57 sum
+-rwxrwxrwx 1 san san   275 Aug 16 11:49 sum.c
+-rwxrwxrwx 1 san san 16656 Aug 16 11:49 t2
+-rwxrwxrwx 1 san san 16992 Aug 18 11:57 t4

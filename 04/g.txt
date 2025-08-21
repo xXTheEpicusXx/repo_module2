@@ -1,0 +1,7 @@
+-rwxrwxrwx 1 san san     4 Aug 18 11:45 c.txt
+-rwxrwxrwx 1 san san     0 Aug 18 12:21 c_files.txt
+-rwxrwxrwx 1 san san     2 Aug 18 12:05 count.txt
+-rwxrwxrwx 1 san san   961 Aug 18 11:05 main.c
+-rwxrwxrwx 1 san san   328 Aug 16 11:49 max.c
+-rwxrwxrwx 1 san san  4398 Aug 18 12:40 myshell.c
+-rwxrwxrwx 1 san san   275 Aug 16 11:49 sum.c
