@@ -2,7 +2,7 @@
 
 void sum(double *res, double arg1, double arg2)
 {
-    *res = arg1 + arg2;
+    *res = arg1 + 2 * arg2;
 }
 
 // измененный sum для проверки

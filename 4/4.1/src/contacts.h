@@ -1,3 +1,6 @@
+#ifndef CONTACTS_H
+#define CONTACTS_H
+
 #define STR_LEN 30
 #define ARR_SIZE 10
 
@@ -28,7 +31,11 @@ typedef struct
     SocialNetwork socNets[ARR_SIZE];
 } Contact;
 
-void add(Fullname fn, ...);
-void edit(Fullname fn, ...);
-void delete(Fullname fn);
-void print(Fullname fn);
+typedef struct Node Node;
+typedef struct DoubleLinkedList DoubleLinkedList;
+
+Node *add(Fullname fn, ...);
+Node *edit(Fullname fn, ...);
+void del(Fullname fn);
+Node *print(Fullname fn);
+#endif

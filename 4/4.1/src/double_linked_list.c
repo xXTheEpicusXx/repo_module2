@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 
+DoubleLinkedList *list = NULL;
+
 Node *initNode(Contact contact)
 {
     Node *newNode = malloc(sizeof(Node));
@@ -58,47 +60,51 @@ void addNode(DoubleLinkedList *list, Contact newContact)
 }
 void deleteNode(DoubleLinkedList *list, Contact contact)
 {
-    Node *tmp = list->head;
-    while (strcmp(tmp->contact.fullname.surname, contact.fullname.surname) != 0)
-    {
-        tmp = tmp->next;
+    if (list == NULL || list->head == NULL) {
+        printf("Список пуст\n");
+        return;
     }
-    if (strcmp(tmp->contact.fullname.surname, contact.fullname.surname) == 0)
-    {
 
-        if (tmp->prev == NULL)
-        {
-            list->head = tmp->next;
+    Node *current = list->head;
+    Node *toDelete = NULL;
+    while (current != NULL) {
+        if (strcmp(current->contact.fullname.surname, contact.fullname.surname) == 0 &&
+            strcmp(current->contact.fullname.name, contact.fullname.name) == 0 &&
+            strcmp(current->contact.fullname.secondname, contact.fullname.secondname) == 0) {
+
+            toDelete = current;
+            break;
         }
-        else
-        {
-            tmp->prev->next = tmp->next;
-        }
-        if (tmp->next == NULL)
-        {
-            list->tail = tmp->prev;
-        }
-        else
-        {
-            tmp->next->prev = tmp->prev;
-        }
-        free(tmp);
+        current = current->next;
     }
+
+    if (toDelete == NULL) {
+        printf("Контакт не найден\n");
+        return;
+    }
+    if (toDelete->prev != NULL) {
+        toDelete->prev->next = toDelete->next;
+    } else {
+        list->head = toDelete->next;
+    }
+
+    if (toDelete->next != NULL) {
+        toDelete->next->prev = toDelete->prev;
+    } else {
+        list->tail = toDelete->prev;
+    }
+    free(toDelete);
+    printf("Контакт удален\n");
 }
+
 void editNode(DoubleLinkedList *list, Contact oldContact, Contact newContact)
 {
-    Node *tmp = list->head;
-    while (strcmp(tmp->contact.fullname.surname, oldContact.fullname.surname) != 0)
-    {
-        tmp = tmp->next;
-    }
-    if (strcmp(tmp->contact.fullname.surname, oldContact.fullname.surname) == 0)
-    {
-        deleteNode(list, oldContact);
-        addNode(list, newContact);
-    }
+    if (list == NULL || list->head == NULL) return;
+    deleteNode(list, oldContact);
+    addNode(list, newContact);
 }
-void printNode(DoubleLinkedList *list, Contact contact)
+
+Node* printNode(DoubleLinkedList *list, Contact contact)
 {
     Node *tmp = list->head;
     while (strcmp(tmp->contact.fullname.surname, contact.fullname.surname) != 0)
@@ -121,14 +127,17 @@ void printNode(DoubleLinkedList *list, Contact contact)
             printf("%s: %s\n", tmp->contact.socNets[j].name, tmp->contact.socNets[j].link);
         }
     }
+    return tmp;
 }
-void clearList(DoubleLinkedList *list)
-{
-    Node *tmp = list->head;
-    while (tmp->next != NULL)
-    {
-        deleteNode(list, tmp->contact);
-        tmp = tmp->next;
+void clearList(DoubleLinkedList *list) {
+    if (list == NULL) return;
+    Node *current = list->head;
+    while (current != NULL) {
+        Node *next = current->next;
+        free(current);
+        current = next;
     }
-    free(list);
+    list->head = NULL;
+    list->tail = NULL;
+
 }

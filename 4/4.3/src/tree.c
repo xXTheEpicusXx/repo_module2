@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 
+
 static void clearTreeR(Node *node);
 
 Node *initNode(Contact contact)

@@ -26,7 +26,7 @@ int main()
     if (!sub || !sum || !mul || !div)
     {
         printf("Error funcs\n");
-        dclose(handle);
+        dlclose(handle);
         exit(1);
     }
     operation operations[] = {

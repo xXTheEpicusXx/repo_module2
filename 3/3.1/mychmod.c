@@ -1,7 +1,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <stdio.h>
-#include <math.h>
+#include <stdint.h>
 #include "mychmod.h"
 
 extern int errno;
@@ -11,7 +11,7 @@ uint16_t getBitMask(char *str)
     uint16_t mask = 0b0;
     if (str[0] >= '0' && str[0] <= '7' && str[1] >= '0' && str[1] <= '7' && str[2] >= '0' && str[2] <= '7')
     {
-        mask = (str[0] - '0') * 64 + (str[0] - '0') * 8 + (str[0] - '0');
+        mask = (str[0] - '0') * 64 + (str[1] - '0') * 8 + (str[2] - '0');
     }
     else
     {
@@ -78,15 +78,20 @@ void getStat(char *str)
 
 void myChmod(int mode, char *str)
 {
-    if (chmod(str, mode) == -1)
+    struct stat fileStat;
+    if (stat(str, &fileStat) == -1)
     {
         if (errno == ENOENT)
         {
             printf("No such file or directory\n");
         }
+        return;
     }
-    else
-    {
-        printf("Права файла %s успешно изменены\n", str);
-    }
+
+    int curMode = fileStat.st_mode & 0777;
+    int finalMode = (fileStat.st_mode & ~0777) | (mode & 0777);
+
+    printf("Текущие права: %o\n", curMode);
+    printf("Новые права: %o\n", mode);
+    printf("Итоговые права: %o\n", finalMode & 0777);
 }

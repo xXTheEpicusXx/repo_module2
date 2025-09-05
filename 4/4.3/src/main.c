@@ -1,7 +1,7 @@
 #include "tests.h"
 #include "tree.h"
 
-Tree *tree;
+extern Tree *tree;
 
 int main()
 {

@@ -1,11 +1,11 @@
-all:
-	gcc main.c calc.c -o calc
+all: main libcalc.so
+	@echo "Выполнить команду: export LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH"
 
-calclib:
-	gcc -fPIC calc.c -c
-	gcc -shared  calc.o -o libcalc.so
+main: main.c
 	gcc -o main main.c -ldl
-#"Выполнить команду: export LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH"
+
+libcalc.so: calc.c calc.h
+	gcc -fPIC -shared calc.c -o libcalc.so
 
 clear:
-	rm calc
+	rm -f main libcalc.so calc.o

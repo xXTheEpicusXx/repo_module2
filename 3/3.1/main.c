@@ -3,8 +3,10 @@
 
 int main(int argc, char *argv[])
 {
+
 // printf("%s", argv[1]);
 #ifdef MASK
+
     uint16_t mask = getBitMask(argv[1]);
     printf("0b");
     uint16_t b = 0b100000000;
@@ -15,8 +17,10 @@ int main(int argc, char *argv[])
     }
     printf("\n");
 #elif STAT
+
     getStat(argv[1]);
 #elif CHMOD
+
     myChmod(getBitMask(argv[1]), argv[2]);
 #endif
     return 0;

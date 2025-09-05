@@ -1,3 +1,6 @@
+#ifndef DOUBLE_LINKED_LIST_H
+#define DOUBLE_LINKED_LIST_H
+
 #include "contacts.h"
 typedef struct Node Node;
 
@@ -19,5 +22,7 @@ DoubleLinkedList *initList();
 void addNode(DoubleLinkedList *list, Contact newContact);
 void deleteNode(DoubleLinkedList *list, Contact contact);
 void editNode(DoubleLinkedList *list, Contact oldContact, Contact newContact);
-void printNode(DoubleLinkedList *list, Contact contact);
+Node* printNode(DoubleLinkedList *list, Contact contact);
 void clearList(DoubleLinkedList *list);
+
+#endif

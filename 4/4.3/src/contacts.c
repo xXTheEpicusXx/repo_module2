@@ -1,10 +1,9 @@
-// #include "contacts.h"
-#include "double_linked_list.h"
+#include "tree.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 
-extern DoubleLinkedList *list;
+Tree *tree = NULL;
 
 void add(Fullname fn, ...)
 {
@@ -33,21 +32,13 @@ void add(Fullname fn, ...)
             newContact.socNets[i] = va_arg(fields, SocialNetwork);
         }
     }
-    addNode(list, newContact);
+    addNode(tree, newContact);
 }
 void edit(Fullname fn, ...)
 {
     Contact oldContact, newContact;
     oldContact.fullname = fn;
-    Node *tmp = list->head;
-    while (strcmp(tmp->contact.fullname.surname, oldContact.fullname.surname) != 0)
-    {
-        tmp = tmp->next;
-    }
-    if (strcmp(tmp->contact.fullname.surname, oldContact.fullname.surname) == 0)
-    {
-        oldContact = tmp->contact;
-    }
+    oldContact = copyNode(tree, oldContact)->contact;
     va_list fields;
     va_start(fields, fn);
     if (strcmp(va_arg(fields, char *), "name") == 0)
@@ -105,18 +96,18 @@ void edit(Fullname fn, ...)
             newContact.socNets[i] = oldContact.socNets[i];
         }
     }
-    editNode(list, oldContact, newContact);
+    editNode(tree, oldContact, newContact);
 }
 void delete(Fullname fn)
 {
     Contact contact;
     contact.fullname = fn;
-    deleteNode(list, contact);
+    deleteNode(tree, contact);
 }
 
 void print(Fullname fn)
 {
     Contact contact;
     contact.fullname = fn;
-    printNode(list, contact);
+    printNode(tree, contact);
 }
